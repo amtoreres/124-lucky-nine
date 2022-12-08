@@ -32,6 +32,7 @@ def calculate_score(cards)
     return score
 end
 
+# Show cards by looping and printing each card
 def show_cards(cards)
     cards.each do |card|
         print " #{card} "
@@ -48,6 +49,8 @@ def draw_third_card(card, hash)
                 hash[card]+=1
                 return card, hash
             else
+                # Draw another card since the current card has been drawn four times already
+                card = draw_card(Show)
                 next
             end
         else
@@ -87,9 +90,6 @@ def start_game()
     print "Player's hand: ["
     show_cards(player_cards)
     puts "]"
-
-    # Calculate the player's score
-    player_score = calculate_score(player_cards)
   
     # Player can decide to draw another card
     print "Would you like to draw another card? (y/n): "
@@ -111,7 +111,7 @@ def start_game()
         puts "]"
     end
 
-    # Calculate player's score (after deciding whether to draw another card or not)
+    # Calculate player's score
     player_score = calculate_score(player_cards)
     
     # Calculate dealer's score (before deciding wheter to draw another card or not)
@@ -149,7 +149,6 @@ def start_game()
     else
         puts "\nA DRAW!"
     end
-
     puts "============================================================="
 end
 
